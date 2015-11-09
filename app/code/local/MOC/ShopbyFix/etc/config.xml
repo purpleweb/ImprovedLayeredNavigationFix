@@ -6,16 +6,12 @@
         </MOC_ShopbyFix>
     </modules>
     <global>
-
         <models>
             <amshopby>
                 <rewrite>
                     <url_builder>MOC_ShopbyFix_Model_Url_Builder</url_builder>
                 </rewrite>
             </amshopby>
-
         </models>
-         
     </global>
-    
 </config>
