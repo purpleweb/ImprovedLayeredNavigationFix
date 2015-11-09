@@ -18,7 +18,6 @@ class MOC_ShopbyFix_Model_Url_Builder extends Amasty_Shopby_Model_Url_Builder
         }
 
         $url = preg_replace('|(^:)/{2,}|', '$1/', $url);
-        //print("#".$paramPart .' @ '.$url."   <br/>\n");
 
         return $url;
     }
