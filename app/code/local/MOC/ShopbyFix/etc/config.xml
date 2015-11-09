@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MOC_ShopbyFix>
+            <version>0.1.0</version>
+        </MOC_ShopbyFix>
+    </modules>
+    <global>
+
+        <models>
+            <amshopby>
+                <rewrite>
+                    <url_builder>MOC_ShopbyFix_Model_Url_Builder</url_builder>
+                </rewrite>
+            </amshopby>
+
+        </models>
+         
+    </global>
+    
+</config>
