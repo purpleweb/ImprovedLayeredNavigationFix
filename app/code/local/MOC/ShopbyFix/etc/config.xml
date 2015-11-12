@@ -47,4 +47,11 @@
           </categoryattribute1396362158_setup>
         </resources>        
     </global>
+    <default>
+        <system>
+            <mocshopbyfix>
+                <debug>0</debug>
+            </mocshopbyfix>
+        </system>
+    </default>
 </config>

@@ -113,8 +113,7 @@ class MOC_ShopbyFix_Helper extends Mage_Core_Helper_Abstract
 
     public function encrypt_links( $item, $force = false )
     {
-        $debug = false;
-
+        $debug = $this->getCSStoreConfigs('system/mocshopbyfix/debug');
 
         // Ajouter un slash a l'url pour compatibilite avec l ancienne version de Shopby
         // mais ne pas en ajouter si l'url est l'url ne contient pas de filtre
