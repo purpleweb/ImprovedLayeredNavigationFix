@@ -1,2 +1,11 @@
-app/code/local/MOC/ShopbyFix/*
+app/code/local/MOC/ShopbyFix/sql/categoryattribute1396362158_setup/mysql4-install-0.1.0.php
+app/code/local/MOC/ShopbyFix/Block/Catalog/Category/View.php
+app/code/local/MOC/ShopbyFix/Block/Page/Html/Head.php
+app/code/local/MOC/ShopbyFix/Model/Catalog/Template/Filter.php
+app/code/local/MOC/ShopbyFix/Model/Url/Builder.php
+app/code/local/MOC/ShopbyFix/Helper/Data.php
+app/code/local/MOC/ShopbyFix/etc/adminhtml.xml
+app/code/local/MOC/ShopbyFix/etc/system.xml
+app/code/local/MOC/ShopbyFix/etc/config.xml
+app/code/local/MOC/ShopbyFix/controllers/Catalog/CategoryController.php
 app/etc/modules/MOC_ShopbyFix.xml

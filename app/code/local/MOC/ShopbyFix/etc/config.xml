@@ -37,13 +37,13 @@
         </models>
         <resources>
           <categoryattribute1396362158_setup>
-          <setup>
-            <module>MOC_ShopbyFix</module>
-            <class>MOC_ShopbyFix_Model_Resource_Eav_Mysql4_Setup</class>
-          </setup>
-          <connection>
-            <use>core_setup</use>
-          </connection>
+              <setup>
+                <module>MOC_ShopbyFix</module>
+                <class>MOC_ShopbyFix_Model_Resource_Eav_Mysql4_Setup</class>
+              </setup>
+              <connection>
+                <use>core_setup</use>
+              </connection>
           </categoryattribute1396362158_setup>
         </resources>        
     </global>
