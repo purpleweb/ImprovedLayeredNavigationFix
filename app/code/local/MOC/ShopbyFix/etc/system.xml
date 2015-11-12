@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <mocshopbyfix module="adminhtml" translate="label">
+            <label>Improved Navigation Robots</label>
+            <tab>amasty</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Configuration des META ROBOTS pour la navigation par filtre.]]></comment>
+                    <fields>
+
+                        <heading0 translate="label">
+                            <label>Parametrage pour aucun attribut selectionne</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading0>  
+
+                        <jslinks0 translate="label comment">
+                            <label>Encrypter les liens</label>
+                            <comment>Javascripter les liens</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jslinks0>
+                        
+                        <heading1 translate="label">
+                            <label>Parametrage pour un attribut selectionne</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading1>  
+
+                        <robots1 translate="label comment">
+                            <label>Robots</label>
+                            <comment>Configuration META ROBOTS</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_design_robots</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </robots1>
+
+                        <jslinks1 translate="label comment">
+                            <label>Encrypter les liens</label>
+                            <comment>Javascripter les liens</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jslinks1>
+                        
+                        <heading2 translate="label">
+                            <label>Parametrage pour deux attributs selectionnes</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading2>  
+
+                        <robots2 translate="label comment">
+                            <label>Robots</label>
+                            <comment>Configuration META ROBOTS</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_design_robots</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </robots2>
+
+                        <jslinks2 translate="label comment">
+                            <label>Encrypter les liens</label>
+                            <comment>Javascripter les liens</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jslinks2>
+                        
+                        <heading3 translate="label">
+                            <label>Parametrage pour trois attributs selectionnes ou plus</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading3>  
+
+                        <robots3 translate="label comment">
+                            <label>Robots</label>
+                            <comment>Configuration META ROBOTS</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_design_robots</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </robots3>
+
+                        <jslinks3 translate="label comment">
+                            <label>Encrypter les liens</label>
+                            <comment>Javascripter les liens</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jslinks3>
+                        
+
+                    </fields>
+                </general>
+            </groups>
+        </mocshopbyfix>
+    </sections>
+</config>

@@ -6,12 +6,45 @@
         </MOC_ShopbyFix>
     </modules>
     <global>
+        <helpers>
+            <mocshopbyfix>
+                <class>MOC_ShopbyFix_Helper</class>
+            </mocshopbyfix>
+        </helpers>
+        <blocks>
+            <page>
+                <rewrite>          
+                    <html_head>MOC_ShopbyFix_Block_Page_Html_Head</html_head>          
+                </rewrite>
+            </page>
+            <catalog>
+                <rewrite>
+                    <category_view>MOC_ShopbyFix_Block_Catalog_Category_View</category_view>
+                </rewrite>
+            </catalog>
+        </blocks>
         <models>
+            <catalog>
+                <rewrite>
+                    <template_filter>MOC_ShopbyFix_Model_Catalog_Template_Filter</template_filter>
+                </rewrite>
+            </catalog>            
             <amshopby>
                 <rewrite>
                     <url_builder>MOC_ShopbyFix_Model_Url_Builder</url_builder>
                 </rewrite>
             </amshopby>
         </models>
+        <resources>
+          <categoryattribute1396362158_setup>
+          <setup>
+            <module>MOC_ShopbyFix</module>
+            <class>MOC_ShopbyFix_Model_Resource_Eav_Mysql4_Setup</class>
+          </setup>
+          <connection>
+            <use>core_setup</use>
+          </connection>
+          </categoryattribute1396362158_setup>
+        </resources>        
     </global>
 </config>
