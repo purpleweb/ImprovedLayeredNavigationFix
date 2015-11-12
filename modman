@@ -1,3 +1,2 @@
-app/code/local/MOC/ShopbyFix/Model/Url/Builder.php
-app/code/local/MOC/ShopbyFix/etc/config.xml
+app/code/local/MOC/ShopbyFix/*
 app/etc/modules/MOC_ShopbyFix.xml
