@@ -2,6 +2,9 @@
 /**
  * @var $this Amasty_Shopby_Block_Catalog_Layer_Filter_Attribute
  */
+?>
+<?php
+$_helper = Mage::helper('mocshopbyfix');
 ?><ol class="
 <?php if ($this->getCollapsed() && !$this->getHasSelection()): ?>no-display-current<?php endif ?>
 <?php
@@ -16,13 +19,15 @@ switch ($this->getDisplayType()){
             echo '<li rel="search"><input type="text" class="amshopby_attr_search input-text" onkeyup="amshopby_attr_search(this)" /></li>';
         }
         foreach ($this->getItemsAsArray() as $item){
+            $item = $_helper->encrypt_links($item,$this->getHasSelection());
+            if( !isset($item['url64']) ) $item['url64'] = NULL;
             echo
 				'<li '.
 				(isset($item['style']) ? $item['style'] : '') .
 				(isset($item['default_sort']) ? ' data-default_sort="' . $item['default_sort'] . '"': '') .
 				(isset($item['featured_sort']) ? ' data-featured_sort="' . $item['featured_sort'] . '"': '') .
 				'data-text="' . htmlspecialchars($item['label']) . '"> ' .
-				'<a class="'.$item['css'].'"' . $item['rel'] . ' href="'.$item['url'].'">'. $item['label'] . $item['count'] . '</a>' .
+				'<a class="'.$item['css'].'"' . $item['rel'] . ' href="'.$item['url'].'" url-encrypted="'.$item['url64'].'">'. $item['label'] . $item['count'] . '</a>' .
 				'</li>';
         }
     break;
@@ -30,6 +35,7 @@ switch ($this->getDisplayType()){
     case Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_ONLY:
         echo '<li>';
         foreach ($this->getItemsAsArray() as $item){
+            $item = $_helper->encrypt_links($item,$this->getHasSelection());
             if (isset($item['image_hover']) && $item['image_hover'] != '') {
                 echo '<img src="' . $item['image_hover'] . '" style="display: none;" />';
                 $onHover = 'onmouseover=this.src="' . $item['image_hover'] . '"'; 

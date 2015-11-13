@@ -1,6 +1,0 @@
-./app/code/local/Amasty/Shopby/Block/Catalog/Layer/Filter/Rating.php:        $this->setTemplate('amasty/amshopby/attribute.phtml');
-./app/code/local/Amasty/Shopby/Block/Catalog/Layer/Filter/Stock.php:        $this->setTemplate('amasty/amshopby/attribute.phtml');
-./app/code/local/Amasty/Shopby/Helper/Layer/View/Strategy/Rating.php:        return 'amasty/amshopby/attribute.phtml';
-./app/code/local/Amasty/Shopby/Helper/Layer/View/Strategy/Attribute.php:        $template = 'amasty/amshopby/attribute.phtml';
-./app/code/local/Amasty/Shopby/Helper/Layer/View/Strategy/Stock.php:        return 'amasty/amshopby/attribute.phtml';
-

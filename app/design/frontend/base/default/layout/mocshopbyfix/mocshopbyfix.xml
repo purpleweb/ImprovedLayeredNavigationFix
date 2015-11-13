@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/mocshopbyfix/mocshopbyfix.js</name></action>
+        </reference>        
+    </default>
+</layout>

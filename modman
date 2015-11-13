@@ -1,3 +1,5 @@
+skin/frontend/base/default/js/mocshopbyfix/mocshopbyfix.js
+app/design/frontend/base/default/layout/mocshopbyfix/mocshopbyfix.xml
 app/design/frontend/base/default/template/mocshopbyfix/attribute.phtml
 app/code/local/MOC/ShopbyFix/sql/categoryattribute1396362158_setup/mysql4-install-0.1.0.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Category/View.php

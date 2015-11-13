@@ -60,6 +60,15 @@
           </categoryattribute1396362158_setup>
         </resources>        
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <mocshopbyfix module="MOC_ShopbyFix">
+                    <file>mocshopbyfix/mocshopbyfix.xml</file>
+                </mocshopbyfix>
+            </updates>
+        </layout>        
+    </frontend>
     <default>
         <system>
             <mocshopbyfix>
