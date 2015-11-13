@@ -43,7 +43,7 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
     public function getTitle()
     {
-        $helper = Mage::helper('mageoncloud_shopby');
+        $helper = Mage::helper('mocshopbyfix');
 
         //print_r( $this->_layout );
 
@@ -72,7 +72,7 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
     public function getCanonical()
     {
-        $helper = Mage::helper('mageoncloud_shopby');
+        $helper = Mage::helper('mocshopbyfix');
         $_DEBUG = true;
 
         /* pour toutes les pages de CMS sauf la home page */

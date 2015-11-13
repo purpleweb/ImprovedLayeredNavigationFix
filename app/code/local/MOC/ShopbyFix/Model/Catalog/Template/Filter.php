@@ -109,7 +109,7 @@ class MOC_ShopbyFix_Model_Catalog_Template_Filter extends Mage_Catalog_Model_Tem
 
     public function ifattrDirective($construction)
     {
-    	$_helper_shopby = Mage::helper('mageoncloud_shopby');
+    	$_helper_shopby = Mage::helper('mocshopbyfix');
 
 		$params = explode(' ', $construction[1] );
 
@@ -151,7 +151,7 @@ class MOC_ShopbyFix_Model_Catalog_Template_Filter extends Mage_Catalog_Model_Tem
     {
         //print_r( $construction );
 
-        $_helper_shopby = Mage::helper('mageoncloud_shopby');
+        $_helper_shopby = Mage::helper('mocshopbyfix');
 
         //$params = explode(' ', $construction[1] );
 
@@ -168,7 +168,7 @@ class MOC_ShopbyFix_Model_Catalog_Template_Filter extends Mage_Catalog_Model_Tem
 
         #print_r( $construction );
 
-        $_helper_shopby = Mage::helper('mageoncloud_shopby');
+        $_helper_shopby = Mage::helper('mocshopbyfix');
 
         $params = explode(' ', $construction[1] );
 

@@ -10,10 +10,17 @@
             <mocshopbyfix>
                 <class>MOC_ShopbyFix_Helper</class>
             </mocshopbyfix>
+            <amshopby>
+                <rewrite>
+                    <layer_view_strategy_attribute>MOC_ShopbyFix_Helper_Layer_View_Strategy_Attribute</layer_view_strategy_attribute>
+                    <layer_view_strategy_rating>MOC_ShopbyFix_Helper_Layer_View_Strategy_Rating</layer_view_strategy_rating>
+                    <layer_view_strategy_stock>MOC_ShopbyFix_Helper_Layer_View_Strategy_Stock</layer_view_strategy_stock>
+                </rewrite>
+            </amshopby>
         </helpers>
         <blocks>
             <page>
-                <rewrite>          
+                <rewrite>
                     <html_head>MOC_ShopbyFix_Block_Page_Html_Head</html_head>          
                 </rewrite>
             </page>
@@ -22,6 +29,12 @@
                     <category_view>MOC_ShopbyFix_Block_Catalog_Category_View</category_view>
                 </rewrite>
             </catalog>
+            <amshopby>
+                <rewrite>
+                    <catalog_layer_filter_rating>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Rating</catalog_layer_filter_rating>
+                    <catalog_layer_filter_stock>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Stock</catalog_layer_filter_stock>
+                </rewrite>                
+            </amshopby>
         </blocks>
         <models>
             <catalog>

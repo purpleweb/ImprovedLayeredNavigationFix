@@ -6,7 +6,7 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Catalog_Block_Categ
     {
         parent::_prepareLayout();
 
-        $helper = Mage::helper('mageoncloud_shopby');
+        $helper = Mage::helper('mocshopbyfix');
         if( $helper->isRequestedFilterAttributes() )
         {
 	        if ($headBlock = $this->getLayout()->getBlock('head')) {
