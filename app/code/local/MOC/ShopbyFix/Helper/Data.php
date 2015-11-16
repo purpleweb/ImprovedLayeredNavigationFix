@@ -113,8 +113,7 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function encrypt_links( $item, $force = false )
     {
-        //$debug = $this->getCSStoreConfigs('system/mocshopbyfix/debug');
-        $debug = false;
+        $debug = Mage::getStoreConfig('system/mocshopbyfix/debug');
 
         // Ajouter un slash a l'url pour compatibilite avec l ancienne version de Shopby
         // mais ne pas en ajouter si l'url est l'url ne contient pas de filtre
@@ -127,7 +126,6 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
                 $item['url'] = rtrim( $item['url'] , '/');       
             }
         }
-
 
         $shopby_nofollow = false;
         // ancienne version
@@ -145,8 +143,11 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 
         $quantite_insuffisante = false;
         if( isset( $item['count'] ) ){
+            //print_r($item['count']);
             $count = trim( $item['count'] );
-            sscanf( $count , "(%d)" , $count );
+            $count = strip_tags($count);
+            $count = preg_replace("/&#?[a-z0-9]+;/i","",$count);
+            list($count) = sscanf( $count , "(%d)" );
             if( $count <= 1 ) {
                 $quantite_insuffisante = true;
             }
@@ -172,19 +173,21 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
             <?php
         }
 
-
         if( ($this->is_encrypt_enable() || $force || $shopby_nofollow) || $quantite_insuffisante )
         {
             $item['url64'] = base64_encode($item['url']);
             $item['url'] = '#';
-            //$item['label'] = 'X '.$item['label'];
             $item['label'] = $item['label'];
-
             $css = explode('"', $item['css']);
             $item['css'] = $css[0].' crypted ';
+            if($debug){
+                $item['style'] = ' style="background-color: #ffcece;" ';
+            }
         } else {
-            //$item['label'] = '- '.$item['label'];            
-            $item['label'] = $item['label'];            
+            $item['label'] = $item['label'];
+            if($debug){
+                $item['style'] = ' style="background-color: #b9f5a7;" ';
+            }
         }
 
         return $item;
