@@ -2,6 +2,7 @@
 <layout>
     <default>
         <reference name="head">
+        	<action method="setTemplate"><template>mocshopbyfix/head.phtml</template></action>
             <action method="addItem"><type>skin_js</type><name>js/mocshopbyfix/mocshopbyfix.js</name></action>
         </reference>        
     </default>
