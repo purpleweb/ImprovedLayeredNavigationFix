@@ -8,6 +8,7 @@ app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Rating.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Stock.php
 app/code/local/MOC/ShopbyFix/Block/Page/Html/Head.php
 app/code/local/MOC/ShopbyFix/Model/Catalog/Template/Filter.php
+app/code/local/MOC/ShopbyFix/Model/Observer.php
 app/code/local/MOC/ShopbyFix/Model/Url/Builder.php
 app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Rating.php
 app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Attribute.php

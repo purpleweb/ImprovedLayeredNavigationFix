@@ -37,6 +37,9 @@
             </amshopby>
         </blocks>
         <models>
+            <mocshopbyfix>
+                <class>MOC_ShopbyFix_Model</class>
+            </mocshopbyfix>            
             <catalog>
                 <rewrite>
                     <template_filter>MOC_ShopbyFix_Model_Catalog_Template_Filter</template_filter>
@@ -58,7 +61,18 @@
                 <use>core_setup</use>
               </connection>
           </categoryattribute1396362158_setup>
-        </resources>        
+        </resources> 
+        <events>
+          <controller_action_layout_load_before>
+            <observers>
+              <controller_action_layout_load_before_handler> <!-- identifier of the event handler -->
+                <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+                <class>mocshopbyfix/observer</class> <!-- observers class alias -->
+                <method>check</method>  <!-- observer's method to be called -->
+              </controller_action_layout_load_before_handler>          
+            </observers>
+          </controller_action_layout_load_before>
+       </events>     
     </global>
     <frontend>
         <layout>
@@ -72,7 +86,7 @@
     <default>
         <system>
             <mocshopbyfix>
-                <debug>0</debug>
+                <debug>1</debug>
             </mocshopbyfix>
         </system>
     </default>

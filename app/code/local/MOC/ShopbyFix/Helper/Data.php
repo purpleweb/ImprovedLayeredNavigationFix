@@ -3,6 +3,59 @@
 class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
+
+    /*=========================
+    ========== UTILS ==========
+    ===========================*/
+
+    /**
+     * test if page is cms
+     * @return boolean
+     */
+    public function is_cms()
+    {
+        return (Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms');
+    }
+
+    /**
+     * test if page is product
+     * @return boolean
+     */
+    public function is_product()
+    {
+        $res = false;
+        if(Mage::registry('current_product')) {
+            $res = true;
+        }
+        return $res;
+    }
+
+    /**
+     * is_category_list
+     * @return boolean
+     */
+    public function is_category_list()
+    {
+        if(Mage::registry('current_category')){
+            if(Mage::registry('current_product')) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /* Pop le dernier caractere si celui ci est un slash */
+    protected function popSlash($string)
+    {
+        return trim( $string , '/' );
+    }
+
+
+
+
     public function isRequestedFilterAttributes()
     {
         $_helper_shopby_attributes = Mage::helper('amshopby/attributes');
@@ -27,6 +80,17 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         return $count;
     }
 
+
+
+    /************************
+    ******* FUNCTIONS *******
+    *************************/
+
+
+    /**
+     * [getRobots description]
+     * @return text
+     */
     public function getRobots()
     {
 
@@ -34,6 +98,7 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         if (empty($this->_data['robots'])) {
             $this->_data['robots'] = Mage::getStoreConfig('design/head/default_robots');
         }
+
 
         // si des attributs sont selectionner on prend la config générale sur le nombre d'attribut
         $count = $this->getRequestedFilterAttributesCount();
@@ -240,22 +305,128 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
 
-    public function is_category_list()
-    {
-        if(Mage::registry('current_category')){
-            if(Mage::registry('current_product')) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
+
+
+    /**
+     * [getProductCategory description]
+     * @return [type] [description]
+     */
+    public function getProductCategory() {
+        /* @var $product Mage_Catalog_Model_Product */
+        $product = Mage::registry('current_product');
+        if ($product->getId()) {
+            $categoryIds = $product->getCategoryIds();
+            print_r($categoryIds);
+            if (is_array($categoryIds) and count($categoryIds) > 1) {
+                $cat = Mage::getModel('catalog/category')->load($categoryIds[0]);
+                return Mage::getModel('catalog/category')->load($categoryIds[0]);
+            };
         }
+        return false;
     }
 
-    public function is_cms()
+
+    public function getCanonical()
     {
-        return (Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms');
+
+        $helper = Mage::helper('mocshopbyfix');
+        $_DEBUG = Mage::getStoreConfig('design/head/default_robots');
+
+        /* pour toutes les pages de CMS sauf la home page */
+        if( $helper->is_cms() )
+        {
+
+            if(!Mage::getBlockSingleton('page/html_header')->getIsHomePage())
+            {
+                $url = $this->popSlash( Mage::helper('core/url')->getCurrentUrl() );
+                $canonical = '<link rel="canonical" href="'.$url.'" />';
+                if($_DEBUG) {
+                    $canonical .= '<!-- Shopby canonical -cms -->';                
+                }
+                return $canonical;
+            } else {
+                $url = $this->popSlash( Mage::helper('core/url')->getCurrentUrl() );
+                $canonical = '<link rel="canonical" href="'.$url.'" />';
+                if($_DEBUG) {
+                    $canonical .= '<!-- Shopby canonical -homepage -->';                
+                }
+                return $canonical;
+            }
+        }
+
+        /* pour toutes les fiches produits */
+        if( $this->is_product() )
+        {
+            $product = Mage::registry('current_product');
+            if ($product->getId()) {
+                $categoryIds = $product->getCategoryIds();
+                $canonical = '';
+                foreach ($categoryIds as $categoryId)
+                {
+                    $cat = Mage::getModel('catalog/category')->load($categoryId);
+                    //$pUrl = $cat->getUrl().'/'.$product->getProductUrl();
+                    $pUrl = $product->getProductUrl();
+                    if( strlen($pUrl) > strlen($canonical) ){
+                        $canonical = $pUrl;
+                    }
+                }
+                $canonicalTag = '<link rel="canonical" href="'.$canonical.'" /><!-- Shopby canonical -product -->';
+                return $canonicalTag;
+            }
+        }
+
+
+        /* pour toutes les categories sans tri ou pager */
+        if( $helper->is_category_list() )
+        {
+            $arrParams = Mage::app()->getRequest()->getParams();
+            if(
+                   array_key_exists( 'limit' , $arrParams ) 
+                || array_key_exists( 'dir'   , $arrParams )
+                || array_key_exists( 'order' , $arrParams )
+                //|| array_key_exists( 'p'     , $arrParams )
+            ) {
+                              
+                $current_category = Mage::registry('current_category');
+                if( $current_category )
+                {
+                    $canonical = '<link rel="canonical" href="'.$current_category->getUrl().'" /><!-- Shopby canonical -category with attributes -->';
+                } else {
+                    $canonical = '';
+                }
+            }
+            else
+            {
+                if( array_key_exists('p', $arrParams) )
+                {
+                    $canonical = '';
+                }
+                else
+                {
+                    $url = Mage::helper('core/url')->getCurrentUrl();
+                    /* CATEGORIE BRUTE */
+                    if(strpos( $url ,'/l/') === false){
+                        $url = rtrim($url, '/');
+                        $url = strtok($url, '?');
+                        $url = rtrim($url, '/');
+                    } else {
+                        /* CATEGORIE AVEC ATTRIBUTS */
+                        $url = strtok($url, '?');
+                        $url = rtrim($url, '/');
+                        $url = $url.'/';
+                    }
+                    $canonical = '<link rel="canonical" href="'.$url.'" />';
+                    if($_DEBUG) {
+                        $canonical .= '<!-- Shopby canonical -category -->';                
+                        /*Mage::getSingleton('core/session')->addNotice(htmlspecialchars($canonical));*/
+                    }
+                    
+                }
+
+            }
+            return $canonical;
+        }
+
     }
 
 }
