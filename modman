@@ -1,8 +1,10 @@
 skin/frontend/base/default/js/mocshopbyfix/mocshopbyfix.js
 app/design/frontend/base/default/layout/mocshopbyfix/mocshopbyfix.xml
 app/design/frontend/base/default/template/mocshopbyfix/attribute.phtml
+app/design/frontend/base/default/template/mocshopbyfix/price.phtml
 app/design/frontend/base/default/template/mocshopbyfix/head.phtml
 app/code/local/MOC/ShopbyFix/sql/categoryattribute1396362158_setup/mysql4-install-0.1.0.php
+app/code/local/MOC/ShopbyFix/Block/Top.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Category/View.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Rating.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Stock.php
@@ -10,9 +12,11 @@ app/code/local/MOC/ShopbyFix/Block/Page/Html/Head.php
 app/code/local/MOC/ShopbyFix/Model/Catalog/Template/Filter.php
 app/code/local/MOC/ShopbyFix/Model/Observer.php
 app/code/local/MOC/ShopbyFix/Model/Url/Builder.php
+app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Price.php
 app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Rating.php
 app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Attribute.php
 app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Stock.php
+app/code/local/MOC/ShopbyFix/Helper/Layer/View/Strategy/Decimal.php
 app/code/local/MOC/ShopbyFix/Helper/Data.php
 app/code/local/MOC/ShopbyFix/etc/adminhtml.xml
 app/code/local/MOC/ShopbyFix/etc/system.xml

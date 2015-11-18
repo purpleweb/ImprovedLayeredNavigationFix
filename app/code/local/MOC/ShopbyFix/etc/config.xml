@@ -15,6 +15,8 @@
                     <layer_view_strategy_attribute>MOC_ShopbyFix_Helper_Layer_View_Strategy_Attribute</layer_view_strategy_attribute>
                     <layer_view_strategy_rating>MOC_ShopbyFix_Helper_Layer_View_Strategy_Rating</layer_view_strategy_rating>
                     <layer_view_strategy_stock>MOC_ShopbyFix_Helper_Layer_View_Strategy_Stock</layer_view_strategy_stock>
+                    <layer_view_strategy_price>MOC_ShopbyFix_Helper_Layer_View_Strategy_Price</layer_view_strategy_price>
+                    <layer_view_strategy_decimal>MOC_ShopbyFix_Helper_Layer_View_Strategy_Decimal</layer_view_strategy_decimal>
                 </rewrite>
             </amshopby>
         </helpers>
@@ -31,9 +33,10 @@
             </catalog>
             <amshopby>
                 <rewrite>
+                    <top>MOC_ShopbyFix_Block_Top</top>
                     <catalog_layer_filter_rating>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Rating</catalog_layer_filter_rating>
                     <catalog_layer_filter_stock>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Stock</catalog_layer_filter_stock>
-                </rewrite>                
+                </rewrite>
             </amshopby>
         </blocks>
         <models>

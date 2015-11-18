@@ -3,6 +3,58 @@
 class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
+    public static $canonicalIgnore = array(
+        'catalogsearch_result_index',
+        'catalogsearch_advanced_index',
+        'catalogsearch_advanced_result',
+        'checkout_cart_index',
+        'checkout_onepage_index',
+    );
+
+    public static $canonicalNoindexFollow = array(
+        '^checkout_.+',
+        '^contacts_.+',
+        '^customer_.+',
+        '^catalog_product_compare_.+',
+        '^rss_.+',
+        '^catalogsearch_.+',
+        '.*?_product_send$',
+        '^tag_.+',
+        '^wishlist_.+',
+        /*
+        'mentions-legales',
+        'awislider/*',
+        'p=*',
+        '?limit=',
+        '?nosto=',
+        '?',
+        */
+    );
+
+    /*
+    public static $canonicalNoindexNofollow = array(
+        'filtre*',
+        '?dir=',
+    );
+    */
+
+    public function getCurrentUrl()
+    {
+        //return Mage::helper('core/url')->getCurrentUrl();
+        $urlString = Mage::helper('core/url')->getCurrentUrl();
+        $url = Mage::getSingleton('core/url')->parseUrl($urlString);
+        $path = $url->getPath();
+        return $path;
+    }
+
+    public function getPage()
+    {
+        $controller = Mage::app()->getRequest()->getControllerName();
+        $action = Mage::app()->getRequest()->getActionName();
+        $route = Mage::app()->getRequest()->getRouteName();
+        $page = $route.'_'.$controller.'_'.$action;
+        return $page;
+    }
 
     /*=========================
     ========== UTILS ==========
@@ -81,6 +133,11 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
 
+    public function debug()
+    {
+        return Mage::getStoreConfig('system/mocshopbyfix/debug');
+    }
+
 
     /************************
     ******* FUNCTIONS *******
@@ -93,6 +150,13 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getRobots()
     {
+
+        /* ignored pages */
+        $ignorePages = self::$canonicalIgnore;
+        if (in_array( $this->getPage(), $ignorePages)) {
+            //Mage::getSingleton('core/session')->addNotice('ignored page');
+            return;
+        }
 
         // on prend la configuration de base de Magneto
         if (empty($this->_data['robots'])) {
@@ -125,12 +189,42 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         if( $this->getTotalProducts() <= 1 )
         {
             return 'noindex,nofollow';
-        }*/
+        }
+        */
 
         // si un attribut est selectionné plusieurs fois, on n'index pas
         if( $this->getSingleAttributeMultipleSelection() )
         {
             return 'noindex,nofollow';
+        }
+
+        /* si page de type ?p=2 noindex,follow */
+        $url = Mage::helper('core/url')->getCurrentUrl();
+        $parsedUrl = parse_url($url, PHP_URL_QUERY);
+        $output = array();
+        parse_str( $parsedUrl, $output );
+        //print_r($output);
+        if( array_key_exists( 'p' , $output ) ){
+            return 'NOINDEX, FOLLOW';
+        }
+
+        /* si order=xxx noindex,nofollow */
+        $url = Mage::helper('core/url')->getCurrentUrl();
+        $parsedUrl = parse_url($url, PHP_URL_QUERY);
+        $output = array();
+        parse_str( $parsedUrl, $output );
+        //print_r($output);
+        if( array_key_exists( 'order' , $output ) ){
+            return 'NOINDEX, NOFOLLOW';
+        }        
+
+        /* Noindex Follow */
+        $noindexFollow = self::$canonicalNoindexFollow;
+        foreach ($noindexFollow as $entry) {
+            if (preg_match('/' . $entry . '/', $this->getPage() )) {
+                $robots = 'NOINDEX, FOLLOW';
+                break;
+            }
         }
 
     	return $robots;
@@ -326,11 +420,16 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
 
+    /**
+     * getCanonical return canonical tag
+     * @return text
+     */
     public function getCanonical()
     {
 
         $helper = Mage::helper('mocshopbyfix');
         $_DEBUG = Mage::getStoreConfig('design/head/default_robots');
+
 
         /* pour toutes les pages de CMS sauf la home page */
         if( $helper->is_cms() )
@@ -426,6 +525,7 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
             }
             return $canonical;
         }
+
 
     }
 

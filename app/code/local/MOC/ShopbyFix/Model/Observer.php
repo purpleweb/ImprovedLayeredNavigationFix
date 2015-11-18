@@ -8,9 +8,10 @@ class MOC_ShopbyFix_Model_Observer
 
 		$debug = Mage::getStoreConfig('system/mocshopbyfix/debug');
 
-		if( $debug ) {
-
+		if( $debug )
+		{
 			$helper = Mage::helper('mocshopbyfix');
+
 			$canonical = $helper->getCanonical();
 			if(empty($canonical)){
 				Mage::getSingleton('core/session')->addNotice('No canonical defined');
@@ -19,8 +20,19 @@ class MOC_ShopbyFix_Model_Observer
 			}
 
 			$robots = $helper->getRobots();
-			Mage::getSingleton('core/session')->addNotice(htmlspecialchars($robots));
+			if(empty($robots)){
+				Mage::getSingleton('core/session')->addNotice('No robots defined');
+			} else {
+				Mage::getSingleton('core/session')->addNotice(htmlspecialchars($robots));
+			}			
 
+			/*
+			$page = $helper->getPage();
+			Mage::getSingleton('core/session')->addNotice($page);
+
+			$url = $helper->getCurrentUrl();
+			Mage::getSingleton('core/session')->addNotice($url);
+			*/			
 		}
 
 	}
