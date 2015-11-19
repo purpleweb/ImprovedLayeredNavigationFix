@@ -1,5 +1,6 @@
 skin/frontend/base/default/js/mocshopbyfix/mocshopbyfix.js
 app/design/frontend/base/default/layout/mocshopbyfix/mocshopbyfix.xml
+app/design/frontend/base/default/template/mocshopbyfix/pager.phtml
 app/design/frontend/base/default/template/mocshopbyfix/attribute.phtml
 app/design/frontend/base/default/template/mocshopbyfix/price.phtml
 app/design/frontend/base/default/template/mocshopbyfix/head.phtml
@@ -8,6 +9,7 @@ app/code/local/MOC/ShopbyFix/Block/Top.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Category/View.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Rating.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Stock.php
+app/code/local/MOC/ShopbyFix/Block/Catalog/Pager.php
 app/code/local/MOC/ShopbyFix/Block/Page/Html/Head.php
 app/code/local/MOC/ShopbyFix/Model/Catalog/Template/Filter.php
 app/code/local/MOC/ShopbyFix/Model/Observer.php

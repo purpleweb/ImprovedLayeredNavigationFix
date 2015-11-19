@@ -4,6 +4,9 @@
         <reference name="head">
             <action method="setTemplate"><template>mocshopbyfix/head.phtml</template></action>
             <action method="addItem"><type>skin_js</type><name>js/mocshopbyfix/mocshopbyfix.js</name></action>
-        </reference>        
+        </reference>
+        <reference name="product_list_toolbar_pager">
+            <action method="setTemplate"><template>mocshopbyfix/pager.phtml</template></action>
+        </reference>
     </default>
 </layout>

@@ -34,6 +34,7 @@
             <amshopby>
                 <rewrite>
                     <top>MOC_ShopbyFix_Block_Top</top>
+                    <catalog_pager>MOC_ShopbyFix_Block_Catalog_Pager</catalog_pager>
                     <catalog_layer_filter_rating>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Rating</catalog_layer_filter_rating>
                     <catalog_layer_filter_stock>MOC_ShopbyFix_Block_Catalog_Layer_Filter_Stock</catalog_layer_filter_stock>
                 </rewrite>
