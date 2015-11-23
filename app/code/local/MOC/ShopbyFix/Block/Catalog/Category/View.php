@@ -1,7 +1,6 @@
 <?php
 
 
-
 class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
 {
     protected function _prepareLayout()
@@ -40,6 +39,7 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
 	            if ($title = $category->getMetaTitleTemplate()) {
 	                $headBlock->setTitle($title);
 	            }
+
 	            if ($description = $category->getMetaDescriptionTemplate()) {
 	                $headBlock->setDescription($description);
 	            }

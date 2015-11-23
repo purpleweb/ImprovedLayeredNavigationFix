@@ -3,6 +3,7 @@ app/design/frontend/base/default/layout/mocshopbyfix/mocshopbyfix.xml
 app/design/frontend/base/default/template/mocshopbyfix/pager.phtml
 app/design/frontend/base/default/template/mocshopbyfix/attribute.phtml
 app/design/frontend/base/default/template/mocshopbyfix/price.phtml
+app/design/frontend/base/default/template/mocshopbyfix/catalog/category/view.phtml
 app/design/frontend/base/default/template/mocshopbyfix/head.phtml
 app/code/local/MOC/ShopbyFix/sql/categoryattribute1396362158_setup/mysql4-install-0.1.0.php
 app/code/local/MOC/ShopbyFix/Block/Top.php

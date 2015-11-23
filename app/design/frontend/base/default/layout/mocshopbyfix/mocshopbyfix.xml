@@ -9,4 +9,10 @@
             <action method="setTemplate"><template>mocshopbyfix/pager.phtml</template></action>
         </reference>
     </default>
+    <catalog_category_layered>
+        <reference name="category.products">
+            <action method="setTemplate"><template>mocshopbyfix/catalog/category/view.phtml</template></action>
+        </reference>
+    </catalog_category_layered>
 </layout>
+

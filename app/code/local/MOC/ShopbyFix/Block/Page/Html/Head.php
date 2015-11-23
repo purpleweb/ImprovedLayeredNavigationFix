@@ -1,4 +1,6 @@
 <?php
+
+
 class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 {
 
@@ -15,15 +17,9 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
         if (null === $this->_templateProcessor) {
             $this->_templateProcessor = Mage::helper('catalog')->getPageTemplateProcessor();
         }
-
         return $this->_templateProcessor;
     }
 
-    /**
-     * Retrieve URL to robots file
-     *
-     * @return string
-     */
     public function getRobots()
     {
         $_helper = Mage::helper('mocshopbyfix');
@@ -31,12 +27,10 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
         return $this->_data['robots'];
     }   
 
-
     public function setDescription( $str )
     {
     	$this->_data['description'] = $this->_getTemplateProcessor()->filter($str);
     }
-
 
     public function setTitle($str)
     {
@@ -46,8 +40,6 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
     public function getTitle()
     {
         $helper = Mage::helper('mocshopbyfix');
-
-        //print_r( $this->_layout );
 
         if( $helper->isRequestedFilterAttributes() )
         {
@@ -65,7 +57,6 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
         return  $this->_data['title'];
     }
-
 
     public function getCanonical()
     {

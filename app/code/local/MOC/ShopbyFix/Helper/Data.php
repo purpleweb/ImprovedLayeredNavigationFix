@@ -1,5 +1,6 @@
 <?php
 
+
 class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
@@ -106,8 +107,6 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
 
-
-
     public function isRequestedFilterAttributes()
     {
         $_helper_shopby_attributes = Mage::helper('amshopby/attributes');
@@ -198,6 +197,17 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
             return 'noindex,nofollow';
         }
 
+        /* si order=xxx noindex,nofollow */
+        /* a mettre avant noindex,follow */
+        $url = Mage::helper('core/url')->getCurrentUrl();
+        $parsedUrl = parse_url($url, PHP_URL_QUERY);
+        $output = array();
+        parse_str( $parsedUrl, $output );
+        //print_r($output);
+        if( array_key_exists( 'order' , $output ) ){
+            return 'NOINDEX, NOFOLLOW';
+        }        
+
         /* si page de type ?p=2 noindex,follow */
         $url = Mage::helper('core/url')->getCurrentUrl();
         $parsedUrl = parse_url($url, PHP_URL_QUERY);
@@ -207,16 +217,6 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         if( array_key_exists( 'p' , $output ) ){
             return 'NOINDEX, FOLLOW';
         }
-
-        /* si order=xxx noindex,nofollow */
-        $url = Mage::helper('core/url')->getCurrentUrl();
-        $parsedUrl = parse_url($url, PHP_URL_QUERY);
-        $output = array();
-        parse_str( $parsedUrl, $output );
-        //print_r($output);
-        if( array_key_exists( 'order' , $output ) ){
-            return 'NOINDEX, NOFOLLOW';
-        }        
 
         /* Noindex Follow */
         $noindexFollow = self::$canonicalNoindexFollow;
@@ -386,17 +386,15 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function _isPageHandled()
     {
-        /** @var Amasty_Shopby_Helper_Page $pageHelper */
-        $pageHelper = Mage::helper('amshopby/page');
-        $page = $pageHelper->getCurrentMatchedPage();
-
-        if (is_null($page)) {
-            return false;
-        } else {
+        $_helper_shopby_attributes = Mage::helper('amshopby/attributes');
+        $filtered_attributes = $_helper_shopby_attributes->getRequestedFilterCodes();
+        if( empty($filtered_attributes) ){
             return true;
+        } else {
+            return false;
         }
-
     }
+
 
 
 
