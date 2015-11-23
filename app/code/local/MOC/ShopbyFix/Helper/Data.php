@@ -57,9 +57,9 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         return $page;
     }
 
-    /*=========================
-    ========== UTILS ==========
-    ===========================*/
+    /*===========================
+      ========== UTILS ==========
+      ===========================*/
 
     /**
      * test if page is cms
@@ -396,6 +396,20 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
 
+    /**
+     * Check if there's filtered attributes selected in current page
+     * @return boolean [description]
+     */
+    public function _isFilteredAttributes()
+    {
+        $_helper_shopby_attributes = Mage::helper('amshopby/attributes');
+        $filtered_attributes = $_helper_shopby_attributes->getRequestedFilterCodes();
+        if( empty($filtered_attributes) ){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 
 

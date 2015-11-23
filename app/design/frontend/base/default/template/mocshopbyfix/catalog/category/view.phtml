@@ -36,6 +36,7 @@
     }
 
 ?>
+
 <?php if( $_helper_shopby->_isPageHandled() ): ?>
 <div class="page-title category-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
@@ -51,11 +52,16 @@
     <?php echo $_imgHtml ?>
 <?php endif; ?>
 
-<?php if($_description): ?>
-    <div class="category-description std <?php echo $_class ?>">
-        <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
-    </div>
+<?php /* Custom SEO title and description for category page with filtered attributes */ ?>
+<?php if($_helper_shopby->_isFilteredAttributes()): ?>
+    <h1><?= $this->getTitle() ?></h1>
+    <?php if($_description): ?>
+        <div class="category-description std <?php echo $_class ?>">
+            <?= $this->getDescription() ?>
+        </div>
+    <?php endif; ?>
 <?php endif; ?>
+
 
 <?php if($this->isContentMode()): ?>
     <?php if(empty($_description)): ?>

@@ -3,6 +3,39 @@
 
 class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
 {
+
+    /**
+     * return the current template processor
+     * @return MOC_ShopbyFix_Model_Catalog_Template_Filter
+     */
+    protected function _getTemplateProcessor()
+    {
+        if (null === $this->_templateProcessor) {
+            $this->_templateProcessor = Mage::helper('catalog')->getPageTemplateProcessor();
+        }
+        return $this->_templateProcessor;
+    }
+
+    /**
+     * set description of the category view
+     * @param MOC_ShopbyFix_Block_Catalog_Category_View $this
+     */
+    public function setDescription($str)
+    {
+        $this->_data['description'] = $this->_getTemplateProcessor()->filter($str);
+        return $this;
+    }
+
+    /**
+     * set title of the category view
+     * @param MOC_ShopbyFix_Block_Catalog_Category_View $this
+     */
+    public function setTitle($str)
+    {
+        $this->_data['title'] = $this->_getTemplateProcessor()->filter($str);
+        return $this;
+    }
+
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
@@ -33,18 +66,18 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
         if( $helper->isRequestedFilterAttributes() )
         {
 	        if ($headBlock = $this->getLayout()->getBlock('head')) {
-
 	            $category = $this->getCurrentCategory();
 
 	            if ($title = $category->getMetaTitleTemplate()) {
 	                $headBlock->setTitle($title);
+                    $this->setTitle($title);
 	            }
-
 	            if ($description = $category->getMetaDescriptionTemplate()) {
-	                $headBlock->setDescription($description);
+                    $headBlock->setDescription($description);
+                    $this->setDescription($description);
 	            }
 	        }
-        }        
+        }
 
         return $this;
     }

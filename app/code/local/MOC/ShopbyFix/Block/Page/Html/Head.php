@@ -34,7 +34,8 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
     public function setTitle($str)
     {
-    	$this->_data['title'] = $this->_getTemplateProcessor()->filter($str);
+        $this->_data['title'] = $this->_getTemplateProcessor()->filter($str);
+        //print $this->_data['title'].'<br/>';
     }
 
     public function getTitle()
