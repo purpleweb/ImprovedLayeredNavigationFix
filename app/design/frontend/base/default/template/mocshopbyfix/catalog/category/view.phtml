@@ -13,11 +13,9 @@
         $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->escapeHtml($_category->getName()).'" title="'.$this->escapeHtml($_category->getName()).'" /></p>';
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     }
-
     $_description = $this->getCurrentCategory()->getDescription();
 
     //print_r( $_description );
-
     //print $_description;
     $_cat = $this->getCurrentCategory();
     $data = $_cat->getData();        
@@ -27,14 +25,13 @@
     $_class = "";
     $_helper_shopby = Mage::helper('mocshopbyfix');
     if( $_helper_shopby->isRequestedFilterAttributes() ){
-        $_imgUrl = '';
+        //$_imgUrl = '';
         $_description = $this->getCurrentCategory()->getDescriptionTemplate();
         $_class = "filtered-attr";
     } else {
-        $_imgUrl = '';
+        //$_imgUrl = '';
         $_description = '';        
     }
-
 ?>
 
 <?php if( $_helper_shopby->_isPageHandled() ): ?>
@@ -49,19 +46,15 @@
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 
 <?php if($_imgUrl): ?>
-    <?php echo $_imgHtml ?>
+    <?= $_imgHtml ?>
 <?php endif; ?>
 
-<?php /* Custom SEO title and description for category page with filtered attributes */ ?>
+<?php /* Custom SEO description for category page with filtered attributes */ ?>
 <?php if($_helper_shopby->_isFilteredAttributes()): ?>
-    <h1><?= $this->getTitle() ?></h1>
-    <?php if($_description): ?>
-        <div class="category-description std <?php echo $_class ?>">
-            <?= $this->getDescription() ?>
-        </div>
-    <?php endif; ?>
+    <div class="category-description std <?= $_class ?>">
+        <?= $this->getSeodescription() ?>
+    </div>
 <?php endif; ?>
-
 
 <?php if($this->isContentMode()): ?>
     <?php if(empty($_description)): ?>

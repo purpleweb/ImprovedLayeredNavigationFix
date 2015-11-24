@@ -20,9 +20,9 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
      * set description of the category view
      * @param MOC_ShopbyFix_Block_Catalog_Category_View $this
      */
-    public function setDescription($str)
+    public function setSeodescription($str)
     {
-        $this->_data['description'] = $this->_getTemplateProcessor()->filter($str);
+        $this->_data['seodescription'] = $this->_getTemplateProcessor()->filter($str);
         return $this;
     }
 
@@ -39,7 +39,6 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
-
         $this->getLayout()->createBlock('catalog/breadcrumbs');
 
         if ($headBlock = $this->getLayout()->getBlock('head')) {
@@ -70,15 +69,15 @@ class MOC_ShopbyFix_Block_Catalog_Category_View extends Mage_Core_Block_Template
 
 	            if ($title = $category->getMetaTitleTemplate()) {
 	                $headBlock->setTitle($title);
-                    $this->setTitle($title);
 	            }
 	            if ($description = $category->getMetaDescriptionTemplate()) {
                     $headBlock->setDescription($description);
-                    $this->setDescription($description);
-	            }
+                }
+                if($seodescription = $category->getDescriptionTemplate()) {
+                    $this->setSeodescription($seodescription);                    
+                }
 	        }
         }
-
         return $this;
     }
 

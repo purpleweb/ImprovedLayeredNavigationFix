@@ -66,6 +66,8 @@
               </connection>
           </categoryattribute1396362158_setup>
         </resources> 
+    </global>
+    <frontend>
         <events>
           <controller_action_layout_load_before>
             <observers>
@@ -77,8 +79,6 @@
             </observers>
           </controller_action_layout_load_before>
        </events>     
-    </global>
-    <frontend>
         <layout>
             <updates>
                 <mocshopbyfix module="MOC_ShopbyFix">
