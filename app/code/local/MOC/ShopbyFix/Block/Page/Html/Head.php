@@ -56,7 +56,12 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
             }
         }
 
-        return  $this->_data['title'];
+        $title = '';
+        if(isset($this->_data['title'])){
+            $title = $this->_data['title'];
+        }
+
+        return $title;
     }
 
     public function getCanonical()
