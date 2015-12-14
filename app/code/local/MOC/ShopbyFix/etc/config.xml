@@ -29,6 +29,7 @@
             <catalog>
                 <rewrite>
                     <category_view>MOC_ShopbyFix_Block_Catalog_Category_View</category_view>
+                    <product_view>MOC_ShopbyFix_Block_Catalog_Product_View</product_view>
                 </rewrite>
             </catalog>
             <amshopby>

@@ -69,7 +69,6 @@ class MOC_ShopbyFix_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
         $helper = Mage::helper('mocshopbyfix');
         $canonical = $helper->getCanonical();
         return $canonical;
-
     }
 
 }

@@ -51,8 +51,10 @@
 
 <?php /* Custom SEO description for category page with filtered attributes */ ?>
 <?php if($_helper_shopby->_isFilteredAttributes()): ?>
-    <div class="category-description std <?= $_class ?>">
+    <!-- Custom SEO description -->
+    <div class="category-description std <?=$_class?>">
         <?= $this->getSeodescription() ?>
+        <?php echo $this->getCmsBlockHtml() ?>
     </div>
 <?php endif; ?>
 

@@ -38,6 +38,69 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         '?dir=',
     );
     */
+   
+    /**
+     * get the longest url for a product
+     * from http://magento.stackexchange.com/questions/52969/get-product-path-from-id-with-category-path-in-url
+     * @param  Mage_Catalog_Model_Product|null $product [description]
+     * @return String full url of the product
+     */
+    public static function getFullProductUrl(Mage_Catalog_Model_Product $product = null){
+
+        // Force display deepest child category as request path.
+        $categories = $product->getCategoryCollection();
+        $deepCatId = 0;
+        $path = '';
+        $productPath = false;
+
+        foreach ($categories as $category) {
+            // Look for the deepest path and save.
+            if (substr_count($category->getData('path'), '/') > substr_count($path, '/')) {
+                $path = $category->getData('path');
+                $deepCatId = $category->getId();
+            }
+        }
+
+        // Load category.
+        $category = Mage::getModel('catalog/category')->load($deepCatId);
+
+        // Remove .html from category url_path.
+        $categoryPath = str_replace('.html', '',  $category->getData('url_path'));
+
+        // Get product url path if set.
+        $productUrlPath = $product->getData('url_path');
+
+        // Get product request path if set.
+        $productRequestPath = $product->getData('request_path');
+
+        // If URL path is not found, try using the URL key.
+        if ($productUrlPath === null && $productRequestPath === null) {
+            $productUrlPath = $product->getData('url_key');
+        }
+
+        // Now grab only the product path including suffix (if any).
+        if ($productUrlPath) {
+            $path = explode('/', $productUrlPath);
+            $productPath = array_pop($path);
+        } elseif ($productRequestPath) {
+            $path = explode('/', $productRequestPath);
+            $productPath = array_pop($path);
+        }
+
+        // Now set product request path to be our full product url including deepest category url path.
+        if ($productPath !== false) {
+            if ($categoryPath) {
+                // Only use the category path is one is found.
+                $product->setData('request_path', $categoryPath . '/' . $productPath);
+            } else {
+                $product->setData('request_path', $productPath);
+            }
+        }
+
+        return $product->getProductUrl();
+    }
+
+
 
     public function getCurrentUrl()
     {
@@ -470,18 +533,11 @@ class MOC_ShopbyFix_Helper_Data extends Mage_Core_Helper_Abstract
         {
             $product = Mage::registry('current_product');
             if ($product->getId()) {
-                $categoryIds = $product->getCategoryIds();
-                $canonical = '';
-                foreach ($categoryIds as $categoryId)
-                {
-                    $cat = Mage::getModel('catalog/category')->load($categoryId);
-                    //$pUrl = $cat->getUrl().'/'.$product->getProductUrl();
-                    $pUrl = $product->getProductUrl();
-                    if( strlen($pUrl) > strlen($canonical) ){
-                        $canonical = $pUrl;
-                    }
-                }
-                $canonicalTag = '<link rel="canonical" href="'.$canonical.'" /><!-- Shopby canonical -product -->';
+                $ID = $product->getId();
+                //$categoryIds = $product->getCategoryIds();
+                $fullUrl = self::getFullProductUrl($product);
+                //print $fullUrl.'<br/>';
+                $canonicalTag = '<link rel="canonical" href="'.$fullUrl.'" /><!-- Shopby canonical -product -->';
                 return $canonicalTag;
             }
         }

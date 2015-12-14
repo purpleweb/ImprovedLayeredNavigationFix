@@ -8,6 +8,7 @@ app/design/frontend/base/default/template/mocshopbyfix/head.phtml
 app/code/local/MOC/ShopbyFix/sql/categoryattribute1396362158_setup/mysql4-install-0.1.0.php
 app/code/local/MOC/ShopbyFix/Block/Top.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Category/View.php
+app/code/local/MOC/ShopbyFix/Block/Catalog/Product/View.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Rating.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Layer/Filter/Stock.php
 app/code/local/MOC/ShopbyFix/Block/Catalog/Pager.php
